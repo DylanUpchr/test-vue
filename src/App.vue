@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <h1 id="title">Title</h1>
+    <h1>{{ title }}</h1>
     <add-item></add-item>
-    <item-list></item-list>
-    <list-title></list-title>
+    <item-list v-on:add-list-item="addItem"></item-list>
+    <list-title v-on:title-change="changeTitle"></list-title>
   </div>
 </template>
 
@@ -18,6 +18,20 @@ export default {
     'add-item': AddItem,
     'item-list': ItemList,
     'list-title': ListTitle
+  },
+  data: function() {
+    return {
+      title: 'My VueJS Todo List',
+      items: []
+    }
+  },
+  methods: {
+    changeTitle(text){
+      this.title = text
+    },
+    addItem(item){
+      this.items += item
+    }
   }
 }
 </script>
