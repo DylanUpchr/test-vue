@@ -2,7 +2,7 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <add-item v-on:add-list-item="addItem"></add-item>
-    <item-list></item-list>
+    <item-list :items="this.items"></item-list>
     <list-title v-on:title-change="changeTitle"></list-title>
   </div>
 </template>
@@ -22,7 +22,6 @@ export default {
   data: function() {
     return {
       title: 'My VueJS Todo List',
-      testItem: false,
       items: []
     }
   },

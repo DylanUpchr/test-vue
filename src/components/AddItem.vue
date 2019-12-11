@@ -13,7 +13,7 @@ export default {
             var item = {
                 'uuid': uuidv4(),
                 'name': this.$refs.itemName.value,
-                'checked': false
+                'checked': true
             }
             return item;
         }
