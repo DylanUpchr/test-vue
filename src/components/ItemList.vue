@@ -1,14 +1,15 @@
 <template>
     <div>
         <div v-for="item in this.Items" :key="item.uuid">
-            <input type="checkbox" :checked=item.checked>
-            <span v-bind:class="{ striked: item.checked}">{{ item.name }}</span>
+            <item :item="item" v-on:delete-item="ReEmitDeleteItem"></item>
         </div>
     </div>
 </template>
 <script>
+import Item from './Item.vue'
 export default {
     name: 'ItemList',
+    components: {'item': Item},
     props:[
         'items'
     ],
@@ -16,14 +17,14 @@ export default {
         return{
             Items: this.items
         }
+    },
+    methods: {
+        ReEmitDeleteItem(uuid){
+           this.$emit('delete-item', uuid) 
+        }
     }
 }
 </script>
 <style scoped>
-    span{
-        margin-left: 5px;
-    }
-    .striked{
-        text-decoration: line-through;
-    }
+
 </style>

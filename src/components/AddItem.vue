@@ -2,6 +2,7 @@
     <div>
         <input ref="itemName" class="form-control" type="text" placeholder="add list item">
         <button type="submit" class="btn btn-primary" v-on:click="$emit('add-list-item', createItem())">Add</button>
+        <span class="glyphicon glyphicon-trash"></span>
     </div>
 </template>
 <script>
@@ -13,7 +14,7 @@ export default {
             var item = {
                 'uuid': uuidv4(),
                 'name': this.$refs.itemName.value,
-                'checked': true
+                'checked': false
             }
             return item;
         }

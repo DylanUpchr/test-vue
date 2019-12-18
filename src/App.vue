@@ -2,7 +2,7 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <add-item v-on:add-list-item="addItem"></add-item>
-    <item-list :items="this.items"></item-list>
+    <item-list :items="this.items" v-on:delete-item="deleteItem"></item-list>
     <list-title v-on:title-change="changeTitle"></list-title>
   </div>
 </template>
@@ -28,6 +28,9 @@ export default {
   methods: {
     addItem(item){
       this.items.push(item)
+    },
+    deleteItem(uuid){
+      this.items.splice(this.items.findIndex(item => item.uuid === uuid), 1)
     },
     changeTitle(text){
       this.title = text
