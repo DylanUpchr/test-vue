@@ -1,8 +1,8 @@
 <template>
     <span>
         <input v-on:click="checkboxChange" ref="chk" type="checkbox" :checked=this.Item.checked >
-        <span v-bind:class="{ striked: this.Done }">{{ Item.name }}</span>
-        <font-awesome-icon v-on:click="$emit('delete-item', Item.uuid)" icon="trash" />
+        <span v-bind:class="{ striked: this.Item.checked }">{{ Item.name }}</span>
+        <font-awesome-icon v-on:click="$emit('delete-item', Item.uuid)" icon="trash-alt" />
     </span>
 </template>
 <script>
@@ -13,13 +13,13 @@ export default {
     data: function(){
         
         return{
-            Item: this.item,
-            Done: false
+            Item: this.item
         }
     },
     methods:{
         checkboxChange(){
-            this.Done = this.$refs.chk.checked
+            this.Item.checked = this.$refs.chk.checked
+            this.$emit('checked-item')
         }
     }
 }

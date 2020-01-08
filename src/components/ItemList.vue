@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <div v-for="item in this.Items" :key="item.uuid">
-            <item :item="item" v-on:delete-item="ReEmitDeleteItem"></item>
-        </div>
-    </div>
+    <ul>
+        <li v-for="item in this.Items" :key="item.uuid">
+            <item :item="item" v-on:delete-item="ReEmitDeleteItem" v-on:checked-item="ReEmitCheckedItem"></item>
+        </li>
+    </ul>
 </template>
 <script>
 import Item from './Item.vue'
@@ -21,10 +21,15 @@ export default {
     methods: {
         ReEmitDeleteItem(uuid){
            this.$emit('delete-item', uuid) 
+        },
+        ReEmitCheckedItem(){
+           this.$emit('checked-item') 
         }
     }
 }
 </script>
 <style scoped>
-
+    ul{
+        list-style: none;
+    }
 </style>
